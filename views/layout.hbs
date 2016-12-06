@@ -2,11 +2,16 @@
   <head>
     <title>NYCDA Chat Application</title>
     <meta name="description" content="This is an example chat application we built for NYCDA Intensive Web Development class. It uses node.js, express, socket.io" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
     <link href="/css/{{ assets "application.css" }}" rel="stylesheet">
   </head>
   <body>
     {{{body}}}
 
+    <script src="/socket.io/socket.io.js"></script>
     <script src="/js/{{ assets "vendor.js" }}"></script>
     <script src="/js/{{ assets "application.js" }}"></script>
   </body>

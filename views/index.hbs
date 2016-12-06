@@ -1,1 +1,42 @@
-<h1>Hello NYCDA</h1>
+<div class="row">
+  <div class="hidden-sm-down col-sm-3">
+    <div class="card card-block">
+      <h5>Public Channel</h5>
+    </div>
+  </div>
+
+  <div class="col-xs-12 col-sm-9">
+    <div class="ny-messages-view" style="padding-bottom: 180px;"></div>
+    
+    <form class="ny-message-form" style="position: fixed;bottom: 0px;width: inherit">
+      <div class="form-group">
+        <textarea class="form-control" rows="4"></textarea>
+      </div>
+      <button type="submit" class="btn btn-block btn-lg btn-primary">Send</button>
+    </form>
+  </div>
+</div>
+
+
+
+<!-- username prompt model -->
+<div class="modal fade ny-username-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4>Pick a Username:</h4>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" name="username" id="username" class="form-control" />
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary btn-lg">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -24,6 +24,28 @@ app.get('/', (req, res) => {
   res.render('index');
 });
 
-app.listen(APP_PORT, () => {
+var server = app.listen(APP_PORT, () => {
   console.log(`Web server started on port ${APP_PORT}`);
+});
+
+let socketServer = require('socket.io')(server);
+
+socketServer.on('connection', function(socket) {
+  console.log('Connection happened');
+
+  socket.on('channel:new_user', (username) => {
+    let joinMessage = {
+      username: username,
+      content: `${username} joined our channel`
+    };
+
+    socket.emit('channel:user_join', joinMessage);
+    socket.broadcast.emit('channel:user_join', joinMessage);
+  });
+
+  socket.on('channel:message', (data) => {
+    console.log('server received a message:');
+    socket.emit('channel:new_message', data);
+    socket.broadcast.emit('channel:new_message', data);
+  });
 });
