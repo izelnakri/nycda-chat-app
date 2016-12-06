@@ -24,6 +24,7 @@
     "morgan": "^1.7.0",
     "nightmare": "^2.8.1",
     "rev-del": "^1.0.5",
+    "socket.io": "^1.7.1",
     "tether": "^1.4.0",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0"

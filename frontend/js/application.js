@@ -1,3 +1,14 @@
+let server = window.io();
+
+server.on('channel:user_join', (data) => {
+  console.log('channel:user_join received:');
+  displayMessage(data);
+});
+
+server.on('channel:new_message', (data) => {
+  displayMessage(data);
+});
+
 $(".ny-username-modal").modal('show');
 
 $('.ny-username-modal button').on('click', () => {
@@ -5,6 +16,8 @@ $('.ny-username-modal button').on('click', () => {
   pickUsername(username);
 
   $('.ny-username-modal').modal('hide');
+
+  server.emit('channel:new_user', username);
 });
 
 $(".ny-message-form").on('submit', function(event) {
@@ -16,10 +29,10 @@ $(".ny-message-form").on('submit', function(event) {
     content: messageContent
   };
 
-  sendMessage(message);
+  server.emit('channel:message', message);
 });
 
-function sendMessage(message) {
+function displayMessage(message) {
   var messageComponent = $(`
     <div class="card card-block">
       <h6>${message.username}:</h6>
