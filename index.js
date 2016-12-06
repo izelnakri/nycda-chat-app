@@ -34,15 +34,18 @@ socketServer.on('connection', function(socket) {
   console.log('Connection happened');
 
   socket.on('channel:new_user', (username) => {
-    socket.emit('channel:user_join', {
+    let joinMessage = {
       username: username,
       content: `${username} joined our channel`
-    });
+    };
+
+    socket.emit('channel:user_join', joinMessage);
+    socket.broadcast.emit('channel:user_join', joinMessage);
   });
 
   socket.on('channel:message', (data) => {
     console.log('server received a message:');
-    console.log(data);
     socket.emit('channel:new_message', data);
+    socket.broadcast.emit('channel:new_message', data);
   });
 });
