@@ -1,9 +1,13 @@
 <html>
   <head>
     <title>NYCDA Chat Application</title>
-    <meta name="description" content="This is an example chat application we built for NYCDA Intensive Web Development class. It uses node.js, express, socket.io"
+    <meta name="description" content="This is an example chat application we built for NYCDA Intensive Web Development class. It uses node.js, express, socket.io" />
+    <link href="/css/{{ assets "application.css" }}" rel="stylesheet">
   </head>
   <body>
     {{{body}}}
+
+    <script src="/js/{{ assets "vendor.js" }}"></script>
+    <script src="/js/{{ assets "application.js" }}"></script>
   </body>
 </html>
