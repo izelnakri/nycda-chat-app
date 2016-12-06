@@ -15,4 +15,5 @@ dependencies:
 
 test:
   override:
-    - gulp test
+    - gulp test:unit
+    - gulp test:acceptance
