@@ -1,0 +1,18 @@
+machine:
+  node:
+    version: 6.2.0
+  environment:
+    MIX_ENV: "test"
+  post:
+    - npm install -g npm@3.x.x
+
+dependencies:
+  cache_directories:
+    - "node_modules"
+  pre:
+    - npm install -g gulp
+    - npm install
+
+test:
+  override:
+    - gulp test

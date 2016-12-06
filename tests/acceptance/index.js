@@ -3,16 +3,16 @@ const Nightmare = require('nightmare'),
       browser = Nightmare();
 
 describe('homepage tests', function() {
-  it('shows hello world', function(done) {
-    browser
-      .goto('http://localhost:3005')
-      .evaluate(function() {
-        return $("h1").first().text();
-      }).then((helloWorldText) => {
-        assert.equal(helloWorldText, 'Hello NYCDA');
-        done();
-      });
-  });
+  // it('shows hello world', function(done) {
+  //   browser
+  //     .goto('http://localhost:3005')
+  //     .evaluate(function() {
+  //       return $("h1").first().text();
+  //     }).then((helloWorldText) => {
+  //       assert.equal(helloWorldText, 'Hello NYCDA');
+  //       done();
+  //     });
+  // });
 
   it('visitor sees a username prompt');
 
