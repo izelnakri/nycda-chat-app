@@ -86,16 +86,23 @@ gulp.task('scss', () => {
     .pipe(gulp.dest('config'));
 });
 
-// gulp.task('test', ['test:unit'], () => {
-//   gulp.watch('test/**/*.js', ['test:unit']);
-// });
-//
-// gulp.task('test:unit', () => {
-//   gulp.src('test/unit/post.js')
-//     .pipe(mocha());
-// });
+gulp.task('test:acceptance', () => {
+  gulp.src('tests/acceptance/**/*.js')
+    .pipe(mocha());
+});
+
+gulp.task('test:unit', () => {
+  gulp.src('tests/unit/**/*.js')
+    .pipe(mocha());
+});
+
+gulp.task('test', ['test:unit', 'test:acceptance'], () => {
+  gulp.watch('tests/unit/**/*.js', ['test:unit']);
+  gulp.watch('tests/acceptance/**/*.js', ['test:acceptance']);
+});
 
 gulp.task('default', ['scss', 'js:vendor', 'js:application'], () => {
   gulp.watch('frontend/scss/**/*.scss', ['scss']);
   gulp.watch('frontend/js/**/*.js', ['js:vendor', 'js:application']);
+  nodemon();
 });
