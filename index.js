@@ -1,6 +1,7 @@
 const express = require('express'),
       logger = require('morgan'),
       hbs = require('hbs'),
+      request = require('request'),
       compression = require('compression'),
       APP_PORT = process.env.PORT || 3005;
 
@@ -22,6 +23,26 @@ app.use(express.static('public', {
 
 app.get('/', (req, res) => {
   res.render('index');
+});
+
+app.get('/fb-login', (req, res) => {
+  request(`https://graph.facebook.com/v2.8/oauth/access_token?client_id=1829373514000205&redirect_uri=localhost:3005/fb-token&code=${req.query.code}`, (error, response, body) {
+    if (!error && response.statusCode == 200) {
+      console.log(body);
+    } else {
+      res.redirect('/');
+    }
+  });
+
+
+  res.redirect('/');
+});
+
+
+app.get('/fb-token', (req, res) => {
+  console.log(req.params);
+  console.log(req.query);
+  res.redirect('/');
 });
 
 var server = app.listen(APP_PORT, () => {
