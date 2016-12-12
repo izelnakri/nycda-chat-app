@@ -4,6 +4,7 @@ const express = require('express'),
       request = require('request'),
       compression = require('compression'),
       session = require('express-session'),
+      FB = require('./services/fb'),
       APP_PORT = process.env.PORT || 3005;
 
 let app = express(),
@@ -35,19 +36,9 @@ app.get('/', (req, res) => {
 });
 
 app.get('/fb-login', (req, res) => {
-  request(`https://graph.facebook.com/v2.8/oauth/access_token?client_id=1829373514000205&redirect_uri=http://localhost:3005/fb-login&code=${req.query.code}&client_secret=7af34a02aaf09fb7f1882b019afbf0e3`, (error, response, body) => {
-    var jsonResponse = JSON.parse(body),
-        url = `https://graph.facebook.com/me?access_token=${jsonResponse.access_token}&fields=email,name,first_name,last_name`;
-    console.log('jsonResponse is:');
-    console.log(jsonResponse);
-    console.log('url thar we request is:');
-    console.log(url);
-
-    request(url, (error, response, body) => {
-      var userData = JSON.parse(body);
-      req.session.user = userData;
-      res.redirect('/');
-    });
+  FB.getAccessToken(req.query.code, (userData) => {
+    req.session.user = userData;
+    res.redirect('/');
   });
 });
 
