@@ -92,12 +92,13 @@ gulp.task('test:acceptance', () => {
 });
 
 gulp.task('test:unit', () => {
-  gulp.src('tests/unit/**/*.js')
+  gulp.src(['tests/models/**/*.js', 'tests/services/**/*.js'])
     .pipe(mocha());
 });
 
 gulp.task('test', ['test:unit', 'test:acceptance'], () => {
-  gulp.watch('tests/unit/**/*.js', ['test:unit']);
+  gulp.watch('tests/models/**/*.js', ['test:unit']);
+  gulp.watch('tests/services/**/*.js', ['test:unit']);
   gulp.watch('tests/acceptance/**/*.js', ['test:acceptance']);
 });
 

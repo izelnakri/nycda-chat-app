@@ -1,0 +1,4 @@
+#!/bin/bash
+
+export FB_CLIENT_ID='1829373514000205'
+export FB_CLIENT_SECRET='7af34a02aaf09fb7f1882b019afbf0e3'
